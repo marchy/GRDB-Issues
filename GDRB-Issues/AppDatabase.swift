@@ -98,14 +98,37 @@ public class AppDatabase {
 //		print("Database located at '\(databaseWriter.path)'")
 //		try self.init( writer: databaseWriter )
 	}
+	private var migrator:DatabaseMigrator {
+		var migrator = DatabaseMigrator()
+
+		if /*DEBUG*/true {
+			migrator.eraseDatabaseOnSchemaChange = true
+		}
+		migrator.registerMigration( "AddWidgets" ){ (database:Database) in
+			try database.create( table: "Widgets" ){ widget in
+				widget.primaryKey( "id", .text )
+				widget.column( "bing", .text )
+				widget.column( "ding", .text )
+				widget.column( "ring", .text )
+			}
+		}
+		migrator.registerMigration( "AddFidgets" ){ (database:Database) in
+			try database.create( table: "Fidgets" ){ widget in
+				widget.primaryKey( "id", .text )
+				widget.column( "bing", .text )
+				widget.column( "ding", .text )
+				widget.column( "ring", .text )
+			}
+		}
+		return migrator
+	}
 
 	
 	private init(writer:any DatabaseWriter) throws {
 		self.writer = writer
 
 		// migrations
-		// TODO: GARBAGE?
-//		try migrator.migrate(writer)
+		try migrator.migrate(writer)
 	}
 	
 	

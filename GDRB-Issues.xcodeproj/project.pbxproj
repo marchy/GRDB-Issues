@@ -13,6 +13,7 @@
 		0999CD592B154A7B00CC40E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0999CD582B154A7B00CC40E3 /* Preview Assets.xcassets */; };
 		0999CD612B154C6000CC40E3 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0999CD602B154C6000CC40E3 /* GRDB */; };
 		0999CD632B154C7C00CC40E3 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0999CD622B154C7C00CC40E3 /* AppDatabase.swift */; };
+		0999CD652B1554DE00CC40E3 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0999CD642B1554DE00CC40E3 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		0999CD552B154A7B00CC40E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0999CD582B154A7B00CC40E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0999CD622B154C7C00CC40E3 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		0999CD642B1554DE00CC40E3 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				0999CD622B154C7C00CC40E3 /* AppDatabase.swift */,
 				0999CD532B154A7A00CC40E3 /* ContentView.swift */,
 				0999CD512B154A7A00CC40E3 /* GDRBIssuesApp.swift */,
+				0999CD642B1554DE00CC40E3 /* Models.swift */,
 				0999CD552B154A7B00CC40E3 /* Assets.xcassets */,
 				0999CD572B154A7B00CC40E3 /* Preview Content */,
 			);
@@ -151,6 +154,7 @@
 				0999CD632B154C7C00CC40E3 /* AppDatabase.swift in Sources */,
 				0999CD542B154A7A00CC40E3 /* ContentView.swift in Sources */,
 				0999CD522B154A7A00CC40E3 /* GDRBIssuesApp.swift in Sources */,
+				0999CD652B1554DE00CC40E3 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

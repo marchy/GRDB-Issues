@@ -27,9 +27,33 @@ struct GDRBIssuesApp : App {
 				SharedDatabaseWriter = database.writer
 			}*/
 		} catch let error {
-			print( "ERROR: Could not initialize database. Error: \(error.localizedDescription)" )
-			fatalError( "TODO: handle DB init error with an informative app halt" )
+			print("ERROR: Could not initialize database. Error: \(error.localizedDescription)")
+			fatalError("TODO: handle DB init error with an informative app halt")
 		}
+		
+		Task {
+			do {
+				try await Self.populateDatabase()
+			} catch {
+				print("ERROR: Could not populate database. Error: \(error.localizedDescription)")
+			}
+		}
+	}
+	
+	
+	//
+	// MARK: -operations
+	//
+	
+	private static func populateDatabase() async throws {
+		// populate
+		let widgets:[Widget] = try await AppDatabase.shared.writer.write { (database:Database) in
+			try stride(from: 1, to: 100, by: 1).map { (_:Int) in
+				try Widget.makeRandom().inserted(database)
+			}
+		}
+		
+		// TODO
 	}
 
 
@@ -40,7 +64,7 @@ struct GDRBIssuesApp : App {
 	var body:some Scene {
 		WindowGroup {
 			ContentView()
-				.environment( \.appDatabase, AppDatabase.shared )
+				.environment(\.appDatabase, AppDatabase.shared)
 		}
 	}
 }
