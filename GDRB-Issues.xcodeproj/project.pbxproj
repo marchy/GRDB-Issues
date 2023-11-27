@@ -11,6 +11,8 @@
 		0999CD542B154A7A00CC40E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0999CD532B154A7A00CC40E3 /* ContentView.swift */; };
 		0999CD562B154A7B00CC40E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0999CD552B154A7B00CC40E3 /* Assets.xcassets */; };
 		0999CD592B154A7B00CC40E3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0999CD582B154A7B00CC40E3 /* Preview Assets.xcassets */; };
+		0999CD612B154C6000CC40E3 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 0999CD602B154C6000CC40E3 /* GRDB */; };
+		0999CD632B154C7C00CC40E3 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0999CD622B154C7C00CC40E3 /* AppDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,7 @@
 		0999CD532B154A7A00CC40E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0999CD552B154A7B00CC40E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0999CD582B154A7B00CC40E3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0999CD622B154C7C00CC40E3 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0999CD612B154C6000CC40E3 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +55,7 @@
 		0999CD502B154A7A00CC40E3 /* GDRB-Issues */ = {
 			isa = PBXGroup;
 			children = (
+				0999CD622B154C7C00CC40E3 /* AppDatabase.swift */,
 				0999CD532B154A7A00CC40E3 /* ContentView.swift */,
 				0999CD512B154A7A00CC40E3 /* GDRBIssuesApp.swift */,
 				0999CD552B154A7B00CC40E3 /* Assets.xcassets */,
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = "GDRB-Issues";
+			packageProductDependencies = (
+				0999CD602B154C6000CC40E3 /* GRDB */,
+			);
 			productName = "GDRB-Issues";
 			productReference = 0999CD4E2B154A7A00CC40E3 /* GDRB-Issues.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 0999CD452B154A7A00CC40E3;
+			packageReferences = (
+				0999CD5F2B154C6000CC40E3 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+			);
 			productRefGroup = 0999CD4F2B154A7A00CC40E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0999CD632B154C7C00CC40E3 /* AppDatabase.swift in Sources */,
 				0999CD542B154A7A00CC40E3 /* ContentView.swift in Sources */,
 				0999CD522B154A7A00CC40E3 /* GDRBIssuesApp.swift in Sources */,
 			);
@@ -344,6 +356,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0999CD5F2B154C6000CC40E3 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0999CD602B154C6000CC40E3 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0999CD5F2B154C6000CC40E3 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0999CD462B154A7A00CC40E3 /* Project object */;
 }
