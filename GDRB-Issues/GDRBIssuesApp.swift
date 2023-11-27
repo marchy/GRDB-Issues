@@ -33,7 +33,18 @@ struct GDRBIssuesApp : App {
 		
 		Task {
 			do {
-				try await Self.populateDatabase()
+				async let insertedWidgets:[Widget] = Self.populateWidets()
+				async let insertedFidgets:[Fidget] = Self.populateFidgets()
+				
+				// query
+				// NOTE:
+//				let _ = try await insertedWidgets
+//				let _ = try await insertedFidgets
+				let queriedWidgets:[Widget] = try await Self.readWidgets()
+				let queriedFidgets:[Fidget] = try await Self.readFidgets()
+				print("# queried widgets: \(queriedWidgets.count)")
+				print("# inserted fidgets: \(queriedFidgets.count)")
+				
 			} catch {
 				print("ERROR: Could not populate database. Error: \(error.localizedDescription)")
 			}
@@ -45,15 +56,31 @@ struct GDRBIssuesApp : App {
 	// MARK: -operations
 	//
 	
-	private static func populateDatabase() async throws {
-		// populate
-		let widgets:[Widget] = try await AppDatabase.shared.writer.write { (database:Database) in
-			try stride(from: 1, to: 100, by: 1).map { (_:Int) in
+	private static func populateWidets() async throws -> [Widget] {
+		try await AppDatabase.shared.writer.write { (database:Database) in
+			try stride(from: 0, to: 10000, by: 1).map { (_:Int) in
 				try Widget.makeRandom().inserted(database)
 			}
 		}
-		
-		// TODO
+	}
+	private static func readWidgets() async throws -> [Widget] {
+	 	try await AppDatabase.shared.reader.read { (database:Database) in
+			try Widget.fetchAll( database )
+		}
+	}
+	
+	
+	private static func populateFidgets() async throws -> [Fidget] {
+		try await AppDatabase.shared.writer.write { (database:Database) in
+			try stride(from: 0, to: 10000, by: 1).map { (_:Int) in
+				try Fidget.makeRandom().inserted(database)
+			}
+		}
+	}
+	private static func readFidgets() async throws -> [Fidget] {
+	 	try await AppDatabase.shared.reader.read { (database:Database) in
+			try Fidget.fetchAll( database )
+		}
 	}
 
 
