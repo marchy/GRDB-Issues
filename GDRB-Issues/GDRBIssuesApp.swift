@@ -33,7 +33,18 @@ struct GDRBIssuesApp : App {
 		
 		Task {
 			do {
-				try await Self.populateDatabase()
+				async let queriedWidgets:[Widget] = Self.populateThenReadWidets()
+				async let queriedFidgets:[Fidget] = Self.populateThenReadFidgets()
+				
+				// query
+				// NOTE:
+//				let _ = try await insertedWidgets
+//				let _ = try await insertedFidgets
+//				async let queriedWidgets:[Widget] = Self.readWidgets()
+//				async let queriedFidgets:[Fidget] = Self.readFidgets()
+				print("# queried widgets: \(try await queriedWidgets.count)")
+				print("# queried fidgets: \(try await queriedFidgets.count)")
+				
 			} catch {
 				print("ERROR: Could not populate database. Error: \(error.localizedDescription)")
 			}
@@ -45,15 +56,35 @@ struct GDRBIssuesApp : App {
 	// MARK: -operations
 	//
 	
-	private static func populateDatabase() async throws {
-		// populate
-		let widgets:[Widget] = try await AppDatabase.shared.writer.write { (database:Database) in
-			try stride(from: 1, to: 100, by: 1).map { (_:Int) in
-				try Widget.makeRandom().inserted(database)
+	private static func populateThenReadWidets() async throws -> [Widget] {
+		let _ = try await AppDatabase.shared.writer.write { (database:Database) in
+			try stride(from: 0, to: 10000, by: 1).map { (_:Int) in
+				let widget = Widget.makeRandom()
+				try widget.upsert(database)
+				return widget
+//				try Widget.makeRandom().inserted(database)
 			}
 		}
 		
-		// TODO
+		return try await AppDatabase.shared.reader.read { (database:Database) in
+			try Widget.fetchAll( database )
+		}
+	}
+	
+	
+	private static func populateThenReadFidgets() async throws -> [Fidget] {
+		let _ = try await AppDatabase.shared.writer.write { (database:Database) in
+			try stride(from: 0, to: 10000, by: 1).map { (_:Int) in
+				let fidget = Fidget.makeRandom()
+				try fidget.upsert(database)
+				return fidget
+//				try Fidget.makeRandom().inserted(database)
+			}
+		}
+	
+	 	return try await AppDatabase.shared.reader.read { (database:Database) in
+			try Fidget.fetchAll( database )
+		}
 	}
 
 

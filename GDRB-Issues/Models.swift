@@ -12,6 +12,13 @@ import GRDB
 struct Widget : FetchableRecord, PersistableRecord, Identifiable, Codable {
 
 	//
+	// MARK: - constants -
+	//
+
+	private(set) static var databaseTableName:String = "Widgets"
+	
+
+	//
 	// MARK: - state -
 	//
 	
@@ -65,7 +72,7 @@ struct Fidget : FetchableRecord, PersistableRecord, Identifiable, Codable {
 	// MARK: constants
 	//
 
-	private(set) static var databaseTableName:String = "Fiidgets"
+	private(set) static var databaseTableName:String = "Fidgets"
 	
 
 	//
